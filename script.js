@@ -30,4 +30,35 @@ function playRound(playerSelection, computerSelection){
 }
 
 
+// 4 creating game(): put the playRound() inside it to play best of 5 & also count score
+
+function game(){
+    let playerScore=0, compScore = 0;
+
+    for(let i=0; i<5; i++){
+        //user input
+        let playerSelection = prompt("enter : ").toLowerCase();
+        let computerSelection = getComputerChoice();
+        
+        console.log(`Attempt ${i + 1}\nPlayer: ${playerSelection} & Computer: ${computerSelection}`);
+
+        //Updating scores based on the result
+        let roundResult=playRound(playerSelection, computerSelection);
+
+        if(roundResult == 1){
+            playerScore++;
+        }
+        else{
+            compScore++;
+        }
+
+        // Score after each round
+        console.log(`Player Score: ${playerScore}, Computer Score: ${compScore}`);
+    }
+    // FINAL score displayed after loop completion
+    console.log('Final Scores: Player ', playerScore, ' - ', compScore, ' Computer');
+}
+
+game();
+
 
