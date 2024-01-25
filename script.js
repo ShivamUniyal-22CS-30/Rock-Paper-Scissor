@@ -1,62 +1,58 @@
-// 1 creating function getComputerChoice
+let playerScore = 0, computerScore = 0, roundNumber = 0;
 
-function getComputerChoice() {
+function getComputerChoice() 
+{
     let str = ['rock', 'paper', 'scissor'];
-    //random index :-
     const randomIndex = Math.floor(Math.random() * str.length);
-    //random corresponding string :-
     return str[randomIndex];
 }
 
-// 2 creating function playRound(); 
-
-function playRound(playerSelection, computerSelection){
-    if(playerSelection.toLowerCase() === computerSelection){
-        // 3 Accounting for tie by recalling "playRound()"
-        console.log("It's a Tie, Try again "); 
-        return playRound(prompt("Enter after tie: ").toLowerCase(), getComputerChoice());
+function playRound(playerSelection, computerSelection) 
+{
+    if (playerSelection.toLowerCase() === computerSelection) 
+    {
+        console.log("It's a Tie, Try again ");
     }
 
-    // all win condition
-    else if(
+    else if (
+        // all win condition
         (playerSelection == "rock" && computerSelection == "scissor") ||
-        (playerSelection == "paper" && computerSelection == "rock") || 
-        (playerSelection == "scissor" && computerSelection == "paper")){ 
-            return 1;
+        (playerSelection == "paper" && computerSelection == "rock") ||
+        (playerSelection == "scissor" && computerSelection == "paper"))
+    {
+        playerScore++;
+        roundNumber++;
     }
-    else{ 
-        return 0;
+
+    else if ((playerSelection == "scissor" && computerSelection == "rock") ||
+        (playerSelection == "rock" && computerSelection == "paper") ||
+        (playerSelection == "paper" && computerSelection == "scissor")) 
+    {
+        computerScore++;
+        roundNumber++;
+    }
+
+    else
+    {
+        console.log("Invalid input");
     }
 }
 
-
 // 4 creating game(): put the playRound() inside it to play best of 5 & also count score
 
-function game(){
-    let playerScore=0, compScore = 0;
-
-    for(let i=0; i<5; i++){
+function game()
+{
+    while (roundNumber < 5)
+    {
+        console.log(`ROUND-${roundNumber + 1}`);
         //user input
         let playerSelection = prompt("enter : ").toLowerCase();
         let computerSelection = getComputerChoice();
-        
-        console.log(`Attempt ${i + 1}\nPlayer: ${playerSelection} & Computer: ${computerSelection}`);
+        playRound(playerSelection, computerSelection); // function call
 
-        //Updating scores based on the result
-        let roundResult=playRound(playerSelection, computerSelection);
-
-        if(roundResult == 1){
-            playerScore++;
-        }
-        else{
-            compScore++;
-        }
-
-        // Score after each round
-        console.log(`Player Score: ${playerScore}, Computer Score: ${compScore}`);
+        console.log(`Player: ${playerSelection}-${playerScore} || Computer: ${computerSelection}-${computerScore}`);
     }
-    // FINAL score displayed after loop completion
-    console.log('Final Scores: Player ', playerScore, ' - ', compScore, ' Computer');
+    console.log('FINAL SCORES : Player ', playerScore, ' - ', computerScore, ' Computer');
 }
 
 game();
