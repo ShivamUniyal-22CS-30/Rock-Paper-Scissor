@@ -34,21 +34,7 @@ function playRound(playerSelection, computerSelection) {
 
 // 4 creating game(): put the playRound() inside it to play best of 5 & also count score
 
-// function game() {
-//     // while (roundNumber < 5)
-//     // {
-//     console.log(`ROUND-${roundNumber + 1}`);
-//     //user input
-//     let playerSelection = '';
-//     let computerSelection = getComputerChoice();
-//     playRound(playerSelection, computerSelection); // function call
 
-//     console.log(`Player: ${playerSelection}-${playerScore} || Computer: ${computerSelection}-${computerScore}`);
-//     // }
-//     console.log('FINAL SCORES : Player ', playerScore, ' - ', computerScore, ' Computer');
-// }
-
-// // game();
 
 
 
@@ -123,5 +109,4 @@ btnScissor.addEventListener('click', () => {
         }
     }
 })
-
 
